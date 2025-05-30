@@ -8,7 +8,7 @@ st.header('Woordenboek [Optimized]')
 
 if 'cursor' not in st.session_state:
     
-    USER = 'postgres.njgzgfmhrkzhvsxpiaph'
+    USER = st.secrets['db_user']
     PASSWORD = st.secrets['db_password']
     HOST = 'aws-0-eu-central-1.pooler.supabase.com'
     PORT = 5432
