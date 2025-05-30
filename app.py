@@ -148,6 +148,8 @@ if len(placeholders)!=0:
     category_filter = f'AND "category" NOT IN ({placeholders})'
 else:
     category_filter = ''
+    
+
 
 
 st.session_state['cursor'].execute(
