@@ -26,6 +26,10 @@ if 'cursor' not in st.session_state:
     cursor = connection.cursor()
     
     st.session_state['cursor'] = cursor
+    cursor.execute('SELECT DISTINCT "category" FROM db2')
+    st.session_state['possible_categories'] = [x[0] for x in cursor.fetchall()]
+    
+
     
     
 page = 1
@@ -135,10 +139,6 @@ with st.sidebar:
         )  
         
         
-
-
-
-
 
 
 
