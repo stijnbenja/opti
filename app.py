@@ -126,8 +126,25 @@ with st.sidebar:
 
         st.markdown('---')
         
+    of_links_4, col_4, of_rechts_4 = st.columns([1,13,1])  
+    
+    with col_4:
+        blacklisted = st.multiselect(
+            "Blacklisted categories",
+            st.session_state['possible_categories'],
+        )  
+        
+        
 
 
+
+
+
+
+
+placeholders = ','.join([f"'{x}'" for x in blacklisted]) # '%s,%s,%s'
+
+category_filter = f'AND "category" NOT IN ({placeholders})'
 
 
 st.session_state['cursor'].execute(
@@ -154,6 +171,8 @@ st.session_state['cursor'].execute(
     AND "Prijs x Vol (maand)" BETWEEN {s_vol_maand_min} AND {s_vol_maand_max}
     AND "Prijs x Vol (kwartaal)" BETWEEN {s_vol_kwartaal_min} AND {s_vol_kwartaal_max}
     AND "Prijs x Vol (jaar)" BETWEEN {s_vol_jaar_min} AND {s_vol_jaar_max}
+    
+    {category_filter}
     
     ORDER BY maand
     LIMIT %s OFFSET %s 
