@@ -144,7 +144,10 @@ with st.sidebar:
 
 placeholders = ','.join([f"'{x}'" for x in blacklisted]) # '%s,%s,%s'
 
-category_filter = f'AND "category" NOT IN ({placeholders})'
+if len(placeholders)!=0:
+    category_filter = f'AND "category" NOT IN ({placeholders})'
+else:
+    category_filter = ''
 
 
 st.session_state['cursor'].execute(
