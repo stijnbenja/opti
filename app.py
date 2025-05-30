@@ -20,7 +20,7 @@ if 'cursor' not in st.session_state:
         host=HOST,
         port=PORT,
         dbname=DBNAME,
-        connect_timeout=3,
+        connect_timeout=6,
     )
     
     cursor = connection.cursor()
